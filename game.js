@@ -9,3 +9,11 @@ console.log("Hello World!");
         console.log("Computer chose: " + compChoice.toLowerCase());
         return compChoice.toLowerCase();
     }
+
+// Now we create a function which helps a human to make a choice
+
+    function getHumanChoice() {
+        let humanChoice = prompt("Kindly choose: " + "Rock, " + "Paper, " + "Scissor");
+        console.log("You chose: " + humanChoice.toLowerCase());
+        return humanChoice.toLowerCase();
+    }
