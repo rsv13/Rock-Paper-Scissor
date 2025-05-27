@@ -13,7 +13,7 @@ console.log("Hello World!");
 // Now we create a function which helps a human to make a choice
 
     function getHumanChoice() {
-        let humanChoice = prompt("Kindly choose: " + "Rock, " + "Paper, " + "Scissor");
+        let humanChoice = prompt("Kindly choose: " + "Rock, " + "Paper, " + "Scissors");
         console.log("You chose: " + humanChoice.toLowerCase());
         return humanChoice.toLowerCase();
     }
@@ -24,8 +24,8 @@ console.log("Hello World!");
         if (compChoice === humanChoice) {
             alert("It's a draw!");
         } else if (
-            (compChoice === "rock" && humanChoice === "scissor") || 
-            (compChoice === "scissor" && humanChoice === "paper") ||
+            (compChoice === "rock" && humanChoice === "scissors") || 
+            (compChoice === "scissors" && humanChoice === "paper") ||
             (compChoice === "paper" && humanChoice === "rock")
         ) {
             alert("You Lose :( !! Computer Wins!")
@@ -34,4 +34,9 @@ console.log("Hello World!");
             }
         }
 
-        
+//BRINGING GAME TO ACTION
+
+let compChoice = getComputerChoice();
+let humanChoice = getHumanChoice();
+playRound(compChoice, humanChoice);
+
