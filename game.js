@@ -17,3 +17,21 @@ console.log("Hello World!");
         console.log("You chose: " + humanChoice.toLowerCase());
         return humanChoice.toLowerCase();
     }
+
+// THE REAL GAME BEGINS - Creating a function which will help in determining the winner 
+
+    function playRound(compChoice, humanChoice) {
+        if (compChoice === humanChoice) {
+            alert("It's a draw!");
+        } else if (
+            (compChoice === "rock" && humanChoice === "scissor") || 
+            (compChoice === "scissor" && humanChoice === "paper") ||
+            (compChoice === "paper" && humanChoice === "rock")
+        ) {
+            alert("You Lose :( !! Computer Wins!")
+            } else {
+                alert ("You Win!! Hurray ");
+            }
+        }
+
+        
