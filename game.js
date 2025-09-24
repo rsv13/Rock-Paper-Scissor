@@ -27,6 +27,28 @@ scissorBtn.addEventListener("click", () => {
     playRound(compChoice, humanChoice);
 });
 
+// Displaying results
+const resultsDiv = document.querySelector("#results");
+let message = "";
+
+if (compChoice === humanChoice) {
+    message = "It's a draw!";
+} else if (
+    (compChoice === "rock" && humanChoice === "scissors") ||
+    (compChoice === "scissors" && humanChoice === "paper") ||
+    (compChoice === "paper" && humanChoice === "rock")
+) {
+    message = "You Lose!";
+} else {
+    message = "You Win!";
+}
+
+// Add more info
+message += `<br>Computer chose: ${compChoice} <br>You chose: ${humanChoice}`;
+
+// Show it in the page
+resultsDiv.innerHTML = message;
+
 
 
 // Writing a function to let computer randomly choose its choice and battle against the human choice
