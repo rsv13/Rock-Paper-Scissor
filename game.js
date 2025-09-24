@@ -1,107 +1,81 @@
 console.log("Hello World!");
 
+let humanScore = 0;
+let computerScore = 0;
 
 // Select buttons
 const rockBtn = document.querySelector("#btn-rock");
 const paperBtn = document.querySelector("#btn-paper");
 const scissorBtn = document.querySelector("#btn-scissor");
 
-// Rock button
+// Results div
+const resultsDiv = document.querySelector("#results");
+
+// Button event listeners
 rockBtn.addEventListener("click", () => {
     const humanChoice = "rock";
     const compChoice = getComputerChoice();
     playRound(compChoice, humanChoice);
 });
 
-// Paper button
 paperBtn.addEventListener("click", () => {
     const humanChoice = "paper";
     const compChoice = getComputerChoice();
     playRound(compChoice, humanChoice);
 });
 
-// Scissors button
 scissorBtn.addEventListener("click", () => {
     const humanChoice = "scissors";
     const compChoice = getComputerChoice();
     playRound(compChoice, humanChoice);
 });
 
-// Displaying results
-const resultsDiv = document.querySelector("#results");
-let message = "";
-
-if (compChoice === humanChoice) {
-    message = "It's a draw!";
-} else if (
-    (compChoice === "rock" && humanChoice === "scissors") ||
-    (compChoice === "scissors" && humanChoice === "paper") ||
-    (compChoice === "paper" && humanChoice === "rock")
-) {
-    message = "You Lose!";
-} else {
-    message = "You Win!";
+// Function to get computer choice
+function getComputerChoice() {
+    const choices = ["rock", "paper", "scissors"];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    const compChoice = choices[randomIndex];
+    console.log("Computer chose: " + compChoice);
+    return compChoice;
 }
 
-// Add more info
-message += `<br>Computer chose: ${compChoice} <br>You chose: ${humanChoice}`;
+// Function to play one round
+function playRound(compChoice, humanChoice) {
+    let message = "";
 
-// Show it in the page
-resultsDiv.innerHTML = message;
-
-
-
-// Writing a function to let computer randomly choose its choice and battle against the human choice
-// Using arrays to store all the available choices and then using Math.random function to pick only one choice at a time
-    function getComputerChoice() {
-        let choice = ["Rock", "Paper", "Scissors"];
-        let randomChoice = Math.floor(Math.random() * choice.length);
-        let compChoice = choice[randomChoice];
-        console.log("Computer chose: " + compChoice.toLowerCase());
-        return compChoice.toLowerCase();
+    // Compare choices and update scores
+    if (compChoice === humanChoice) {
+        message = "It's a draw!";
+    } else if (
+        (compChoice === "rock" && humanChoice === "scissors") ||
+        (compChoice === "scissors" && humanChoice === "paper") ||
+        (compChoice === "paper" && humanChoice === "rock")
+    ) {
+        computerScore++;
+        message = "You Lose!";
+    } else {
+        humanScore++;
+        message = "You Win!";
     }
 
-// Now we create a function which helps a human to make a choice
+    // Add choices and scores
+    message += `<br>Computer chose: ${compChoice} <br>You chose: ${humanChoice}`;
+    message += `<br>Score - You: ${humanScore} | Computer: ${computerScore}`;
 
-    function getHumanChoice() {
-        let humanChoice = prompt("Kindly choose: " + "Rock, " + "Paper, " + "Scissors");
-        console.log("You chose: " + humanChoice.toLowerCase());
-        return humanChoice.toLowerCase();
+    // Check if someone reached 5 points
+    if (humanScore === 5) {
+        message += "<br>🎉 You reached 5 points! You win the game!";
+        disableButtons();
+    } else if (computerScore === 5) {
+        message += "<br>💻 Computer reached 5 points! You lose the game!";
+        disableButtons();
     }
 
-// THE REAL GAME BEGINS - Creating a function which will help in determining the winner 
+    // Display the message
+    resultsDiv.innerHTML = message;
+}
 
-    function playRound(compChoice, humanChoice) {
-        if (compChoice === humanChoice) {
-            alert("It's a draw!");
-        } else if (
-            (compChoice === "rock" && humanChoice === "scissors") || 
-            (compChoice === "scissors" && humanChoice === "paper") ||
-            (compChoice === "paper" && humanChoice === "rock")
-        ) {
-            alert("You Lose :( !! Computer Wins!")
-            } else {
-                alert ("You Win!! Hurray ");
-            }
-        }
-
-// //BRINGING GAME TO ACTION
-
-// let compChoice = getComputerChoice();
-// let humanChoice = getHumanChoice();
-// playRound(compChoice, humanChoice);
-
-
-//PLAY 5 ROUNDS OF GAME
-// function playGame() {
-//     for (let i = 1; i <= 5; i++) {
-//         console.log(`--- Round ${i} ---`);
-//         let compChoice = getComputerChoice();   // NEW computer choice each round
-//         let humanChoice = getHumanChoice();     // NEW human choice each round
-//         playRound(compChoice, humanChoice);
-//     }
-// }
-
-// // Start 5-round game
-// playGame();
-
+// Function to disable buttons
+function disableButtons() {
+    document.querySelectorAll("button").forEach(btn => btn.disabled = true);
+}
