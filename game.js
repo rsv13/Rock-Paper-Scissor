@@ -1,5 +1,34 @@
 console.log("Hello World!");
 
+
+// Select buttons
+const rockBtn = document.querySelector("#btn-rock");
+const paperBtn = document.querySelector("#btn-paper");
+const scissorBtn = document.querySelector("#btn-scissor");
+
+// Rock button
+rockBtn.addEventListener("click", () => {
+    const humanChoice = "rock";
+    const compChoice = getComputerChoice();
+    playRound(compChoice, humanChoice);
+});
+
+// Paper button
+paperBtn.addEventListener("click", () => {
+    const humanChoice = "paper";
+    const compChoice = getComputerChoice();
+    playRound(compChoice, humanChoice);
+});
+
+// Scissors button
+scissorBtn.addEventListener("click", () => {
+    const humanChoice = "scissors";
+    const compChoice = getComputerChoice();
+    playRound(compChoice, humanChoice);
+});
+
+
+
 // Writing a function to let computer randomly choose its choice and battle against the human choice
 // Using arrays to store all the available choices and then using Math.random function to pick only one choice at a time
     function getComputerChoice() {
@@ -34,9 +63,23 @@ console.log("Hello World!");
             }
         }
 
-//BRINGING GAME TO ACTION
+// //BRINGING GAME TO ACTION
 
-let compChoice = getComputerChoice();
-let humanChoice = getHumanChoice();
-playRound(compChoice, humanChoice);
+// let compChoice = getComputerChoice();
+// let humanChoice = getHumanChoice();
+// playRound(compChoice, humanChoice);
+
+
+//PLAY 5 ROUNDS OF GAME
+// function playGame() {
+//     for (let i = 1; i <= 5; i++) {
+//         console.log(`--- Round ${i} ---`);
+//         let compChoice = getComputerChoice();   // NEW computer choice each round
+//         let humanChoice = getHumanChoice();     // NEW human choice each round
+//         playRound(compChoice, humanChoice);
+//     }
+// }
+
+// // Start 5-round game
+// playGame();
 
